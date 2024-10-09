@@ -15,13 +15,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.pokedex.R
+import com.example.pokedex.data.models.domain.evolutionchain.EvolutionStage
 import com.example.pokedex.presentation.components.commons.ErrorComponent
 import com.example.pokedex.presentation.components.commons.LoadingState
-import com.example.pokedex.data.models.domain.evolutionchain.EvolutionStage
 import com.example.pokedex.utils.UiState
 import kotlinx.coroutines.flow.StateFlow
 
@@ -29,7 +30,8 @@ import kotlinx.coroutines.flow.StateFlow
 fun PokemonEvolution(
     pokemonId: Int,
     pokemonEvolutionState: StateFlow<UiState<List<EvolutionStage>>>,
-    fetchEvolutionChain: (Int) -> Unit
+    fetchEvolutionChain: (Int) -> Unit,
+    dominantColor: Color
 ) {
 
     val viewState by pokemonEvolutionState.collectAsStateWithLifecycle()
@@ -49,7 +51,7 @@ fun PokemonEvolution(
             }
 
             UiState.Loading -> {
-                LoadingState(modifier = Modifier.size(20.dp))
+                LoadingState(modifier = Modifier.size(20.dp), dominantColor)
             }
 
             is UiState.Success -> {

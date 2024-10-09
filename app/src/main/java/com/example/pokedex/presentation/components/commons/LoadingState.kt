@@ -13,9 +13,9 @@ private val defaultModifier = Modifier
     .padding(128.dp)
 
 @Composable
-fun LoadingState(modifier: Modifier = defaultModifier) {
+fun LoadingState(modifier: Modifier = defaultModifier, indicatorColor: Color = Color.Gray) {
     CircularProgressIndicator(
         modifier = modifier,
-        color = Color.Gray
+        color = indicatorColor
     )
 }

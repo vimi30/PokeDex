@@ -102,21 +102,24 @@ fun SharedTransitionScope.PokemonDetailsSScreen(
     Scaffold(
         containerColor = dominantColor,
         contentWindowInsets = WindowInsets(0.dp),
-        snackbarHost = { SnackbarHost(
-            hostState = snackbarHostState,
-            snackbar = { snackbarData ->
-                CustomSnackbar(
-                    snackbarData = snackbarData,
-                    backgroundColor = SoftBeige,
-                    contentColor = Color.Black
-                )
-            }
-        ) },
+        snackbarHost = {
+            SnackbarHost(
+                hostState = snackbarHostState,
+                snackbar = { snackbarData ->
+                    CustomSnackbar(
+                        snackbarData = snackbarData,
+                        backgroundColor = SoftBeige,
+                        contentColor = Color.Black
+                    )
+                }
+            )
+        },
         content = {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(it).padding(16.dp)
+                    .padding(it)
+                    .padding(16.dp)
             )
             {
 
@@ -246,7 +249,8 @@ fun SharedTransitionScope.PokemonDetailsSScreen(
                                     2 -> PokemonEvolution(
                                         pokemonId = state.data.id,
                                         pokemonEvolutionState = pokemonEvolutionState,
-                                        fetchEvolutionChain = fetchEvolutionChain
+                                        fetchEvolutionChain = fetchEvolutionChain,
+                                        dominantColor = dominantColor
                                     )
                                 }
                             }
