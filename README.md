@@ -76,3 +76,8 @@ Future Enhancements
 	•	Search Functionality: Implement a search bar to find Pokémon by name.
 	•	Filtering and Sorting: Add options to filter Pokémon by type and sort by stats.
 	•	User Accounts: Allow users to create accounts and sync favorites across devices.
+Demo
+
+https://github.com/user-attachments/assets/1a8bb1a6-4baf-4156-a800-c4c889c07880
+
+
