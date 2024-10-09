@@ -33,6 +33,7 @@ ScreenShots
 <img src="https://github.com/user-attachments/assets/468092c8-51f1-4221-b185-8940e750b696" width="300" />
 <img src="https://github.com/user-attachments/assets/efc53569-77fc-4900-86eb-e7b5153775b0" width="300" />
 <img src="https://github.com/user-attachments/assets/57144e08-080b-42ec-a34a-52a2227f9027" width="300" />
+<img src="https://github.com/user-attachments/assets/743c5402-e247-463f-bf30-3adbf1d53dff" width="300" />
 <img src="https://github.com/user-attachments/assets/81d8c6ee-c4b8-4c04-b2b4-a9f920f92f66" width="300" />
 
 Architecture
