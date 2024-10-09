@@ -80,4 +80,11 @@ Demo
 
 https://github.com/user-attachments/assets/1a8bb1a6-4baf-4156-a800-c4c889c07880
 
+Acknowledgments
+
+	•	PokeAPI: For providing the Pokémon data.
+	•	Jetpack Compose Community: For resources and support.
+	•	Android Developers Documentation: For comprehensive guides and best practices.
+
+
 
