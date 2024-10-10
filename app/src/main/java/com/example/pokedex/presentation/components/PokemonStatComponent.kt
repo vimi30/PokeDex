@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pokedex.ui.theme.PokeDexTheme
 import com.example.pokedex.ui.theme.SoftBeige
 import com.example.pokedex.utils.capitalizeName
@@ -37,30 +38,34 @@ fun PokemonStatComponent(statLabel: String, level: Int) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
-        modifier = Modifier.padding(12.dp)
+        modifier = Modifier.padding(8.dp)
     ) {
         Text(
             text = capitalizeName(statLabel),
+            fontSize = 12.sp,
+            lineHeight = 12.sp,
             fontWeight = FontWeight.SemiBold,
             textAlign = TextAlign.Start,
             color = Color.LightGray,
             modifier = Modifier
-                .padding(start = 12.dp)
+                .padding(start = 16.dp)
                 .weight(0.2f)
         )
         Text(
             text = currentNumber.toString(),
+            fontSize = 12.sp,
+            lineHeight = 12.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
             modifier = Modifier
-                .padding(start = 12.dp)
+                .padding(start = 16.dp)
                 .weight(0.2f)
         )
         AnimatedStatBarComponent(
             indicatorProgress = level.toFloat() / 100,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(end = 12.dp)
+                .padding(end = 16.dp)
                 .weight(0.6f)
         )
     }

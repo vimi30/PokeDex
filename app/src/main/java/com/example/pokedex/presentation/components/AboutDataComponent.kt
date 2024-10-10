@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pokedex.ui.theme.PokeDexTheme
 import com.example.pokedex.ui.theme.SoftBeige
 
@@ -21,10 +22,12 @@ fun AboutDataComponent(label: String, value: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(12.dp)
     ) {
         Text(
             text = label,
+            fontSize = 12.sp,
+            lineHeight = 12.sp,
             fontWeight = FontWeight.SemiBold,
             textAlign = TextAlign.Start,
             color = Color.LightGray,
@@ -35,6 +38,8 @@ fun AboutDataComponent(label: String, value: String) {
 
         Text(
             text = value,
+            fontSize = 12.sp,
+            lineHeight = 12.sp,
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Start,
             modifier = Modifier.weight(1f)

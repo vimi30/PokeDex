@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
@@ -50,10 +49,12 @@ fun SharedTransitionScope.FavoriteListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        onClick = { onClick(
-            pokemon.name,
-            pokemon.dominantColor
-        ) },
+        onClick = {
+            onClick(
+                pokemon.name,
+                pokemon.dominantColor
+            )
+        },
     ) {
         Row(
             modifier = Modifier
@@ -65,18 +66,18 @@ fun SharedTransitionScope.FavoriteListItem(
                 animatedVisibilityScope = animatedVisibilityScope,
                 imageUrl = pokemon.imageUrl,
                 modifier = Modifier
-                    .size(160.dp)
-                    .padding(16.dp)
+                    .fillMaxWidth(0.4f)
                     .aspectRatio(1f)
+                    .padding(16.dp)
             ) { }
 
             Spacer(modifier = Modifier.width(12.dp))
 
             Column(
                 modifier = Modifier
+                    .weight(1f)
                     .fillMaxWidth()
-                    .padding(16.dp)
-                    .weight(1f),
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
                 PokemonNameComponent(
@@ -108,5 +109,4 @@ fun SharedTransitionScope.FavoriteListItem(
             }
         }
     }
-
 }

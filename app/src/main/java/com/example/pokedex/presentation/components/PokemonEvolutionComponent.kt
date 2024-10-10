@@ -37,7 +37,8 @@ fun PokemonEvolutionComponent(
             textAlign = TextAlign.Center,
             text = capitalizeName(evolutionStage.speciesName),
             fontWeight = FontWeight.SemiBold,
-            fontSize = 16.sp
+            fontSize = 12.sp,
+            lineHeight = 12.sp,
         )
     }
 }

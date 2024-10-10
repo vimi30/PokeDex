@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedFilterChip
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -27,6 +29,8 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -38,6 +42,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -63,7 +68,7 @@ import com.example.pokedex.utils.toHexString
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalSharedTransitionApi::class)
+@OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun SharedTransitionScope.PokemonDetailsSScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
@@ -98,8 +103,9 @@ fun SharedTransitionScope.PokemonDetailsSScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
-
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         containerColor = dominantColor,
         contentWindowInsets = WindowInsets(0.dp),
         snackbarHost = {
@@ -117,9 +123,9 @@ fun SharedTransitionScope.PokemonDetailsSScreen(
         content = {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
                     .padding(it)
                     .padding(16.dp)
+                    .fillMaxSize()
             )
             {
 
@@ -220,8 +226,8 @@ fun SharedTransitionScope.PokemonDetailsSScreen(
                         ) {
                             Card(
                                 modifier = Modifier
-                                    .size(450.dp)
-                                    .offset(y = 200.dp),
+                                    .fillMaxHeight(0.7f)
+                                    .offset(y = 120.dp),
                                 colors = CardDefaults.cardColors(GhostWhite),
                                 elevation = CardDefaults.cardElevation(6.dp),
                                 shape = RoundedCornerShape(12.dp),
@@ -263,7 +269,7 @@ fun SharedTransitionScope.PokemonDetailsSScreen(
                                         state = rememberSharedContentState(key = state.data.imageUrl),
                                         animatedVisibilityScope = animatedVisibilityScope
                                     )
-                                    .size(250.dp)
+                                    .fillMaxWidth(0.5f)
                                     .aspectRatio(1f),
                                 loading = { LoadingState(modifier = Modifier.size(20.dp)) }
                             )
