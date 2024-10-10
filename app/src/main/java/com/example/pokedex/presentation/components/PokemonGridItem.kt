@@ -1,8 +1,10 @@
 package com.example.pokedex.presentation.components
 
 import android.graphics.drawable.Drawable
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +12,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -21,14 +22,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pokedex.data.models.domain.pokemonList.SimplePokemon
 import com.example.pokedex.ui.theme.LightYellow
+import com.example.pokedex.ui.theme.PokeDexTheme
 import com.example.pokedex.utils.capitalizeName
 import com.example.pokedex.utils.toHexString
 
@@ -46,7 +48,6 @@ fun SharedTransitionScope.PokemonGridItem(
 
     Card(
         modifier = modifier
-            .clip(shape = RoundedCornerShape(12.dp))
             .aspectRatio(1f),
         onClick = {
             onClick(
@@ -58,7 +59,7 @@ fun SharedTransitionScope.PokemonGridItem(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
         ) {
             PokemonImageComponent(
@@ -70,7 +71,7 @@ fun SharedTransitionScope.PokemonGridItem(
                     }
                 },
                 modifier = Modifier
-                    .size(150.dp)
+                    .size(128.dp)
                     .padding(16.dp)
             )
             val name = capitalizeName(pokemon.name)
@@ -78,8 +79,9 @@ fun SharedTransitionScope.PokemonGridItem(
                 textAlign = TextAlign.Center,
                 text = name,
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                lineHeight = 20.sp,
+                color = Color.Black,
+                fontSize = 12.sp,
+                lineHeight = 12.sp,
                 modifier = Modifier
                     .padding(horizontal = 8.dp, vertical = 6.dp)
                     .sharedElement(
@@ -92,23 +94,32 @@ fun SharedTransitionScope.PokemonGridItem(
 }
 
 
-//@Preview
-//@Composable
-//fun GridItemPreview() {
-//    PokeDexTheme {
-//        PokemonGridItem(
-//            modifier = Modifier,
-//            onClick = {},
-//            calDominantColor =
-//            { _, onColorCalculated ->
-//                onColorCalculated(Color.LightGray) // Set a default color for the preview
-//            },
-//            pokemon = SimplePokemon(
-//                name = "Ditto",
-//                url = "",
-//                imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-//            )
-//
-//        )
-//    }
-//}
+@OptIn(ExperimentalSharedTransitionApi::class)
+@Preview
+@Composable
+fun GridItemPreview() {
+    PokeDexTheme {
+        SharedTransitionLayout {
+            AnimatedVisibility(visible = true) {
+                PokemonGridItem(
+                    animatedVisibilityScope = this,
+                    modifier = Modifier,
+                    onClick = {},
+                    calDominantColor =
+                    { _, onColorCalculated ->
+                        onColorCalculated(Color.LightGray) // Set a default color for the preview
+                    },
+                    pokemon = SimplePokemon(
+                        name = "Ditto",
+                        url = "",
+                        imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+                    )
+
+                )
+            }
+
+
+        }
+
+    }
+}

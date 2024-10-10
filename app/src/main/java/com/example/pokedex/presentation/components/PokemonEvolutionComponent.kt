@@ -12,8 +12,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
-import com.example.pokedex.presentation.components.commons.LoadingState
 import com.example.pokedex.data.models.domain.evolutionchain.EvolutionStage
+import com.example.pokedex.presentation.components.commons.LoadingState
 import com.example.pokedex.utils.capitalizeName
 
 
@@ -28,7 +28,7 @@ fun PokemonEvolutionComponent(
             model = evolutionStage.imageUrl,
             contentDescription = "Character Image",
             modifier = Modifier
-                .size(120.dp)
+                .size(100.dp)
                 .aspectRatio(1f),
             loading = { LoadingState(modifier = Modifier.size(20.dp)) },
         )
